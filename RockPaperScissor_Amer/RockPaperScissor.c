@@ -25,6 +25,7 @@ char playMove();
 char pcMove();
 const char* checkWinner(char player, char move);
 int updateScore(const char* result, int* yourWins, int* pcWins);
+int chooseGamemode();
 
 
 
@@ -36,11 +37,13 @@ int main() {
 	int playerWins = 0;
 	int computerWins = 0;
 	char playAgain;
-	int gamemode[3] = { 1, 2, 3 };
+	int gamemode;
 
 	do {
+		gamemode = chooseGamemode();
+		clearInputBuffer();
+ 	} while (gamemode != 1 && gamemode != 2 && gamemode != 3);
 
-	} while (1)
 
 
 	do {
@@ -168,4 +171,15 @@ int updateScore(const char* result, int* yourWins, int* pcWins) {
 		(*pcWins)++;
 	}
 	return *yourWins, * pcWins;
+}
+
+int chooseGamemode() {
+	int gamemode;
+	printf("Please choose a gamemode: \n");
+	printf("1. Normal\n");
+	printf("2. You always win\n");
+	printf("3. You always lose\n");
+	scanf_s("%d", &gamemode);
+
+	return gamemode;
 }
